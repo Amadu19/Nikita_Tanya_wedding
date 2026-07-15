@@ -30,6 +30,9 @@ const music = document.getElementById('bgMusic');
 const musicBtn = document.getElementById('musicToggle');
 let isPlaying = false;
 
+// Устанавливаем иконку при загрузке
+musicBtn.textContent = '🎵';
+
 musicBtn.addEventListener('click', () => {
     if (isPlaying) {
         music.pause();
@@ -42,6 +45,31 @@ musicBtn.addEventListener('click', () => {
     }
     isPlaying = !isPlaying;
 });
+
+// ===== ЗАКРЫТИЕ УВЕДОМЛЕНИЯ =====
+function closeInfo() {
+    const notification = document.getElementById('infoNotification');
+    notification.style.animation = 'slideOut 0.3s ease-out forwards';
+    setTimeout(() => {
+        notification.style.display = 'none';
+    }, 300);
+}
+
+// Добавляем анимацию закрытия
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideOut {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(-300px);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);
 
 // ===== АНИМАЦИИ ПОЯВЛЕНИЯ ПРИ СКРОЛЛЕ =====
 const observerOptions = {
@@ -57,7 +85,7 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-document.querySelectorAll('section, .venue-card, .wishes-card').forEach(el => {
+document.querySelectorAll('section, .venue-card, .wishes-card, .contacts-card').forEach(el => {
     el.classList.add('fade-in');
     observer.observe(el);
 });
@@ -83,8 +111,8 @@ function createOrnament() {
 }
 
 // Добавляем анимацию падения
-const style = document.createElement('style');
-style.textContent = `
+const fallStyle = document.createElement('style');
+fallStyle.textContent = `
     @keyframes fall {
         to {
             transform: translateY(100vh) rotate(360deg);
@@ -92,7 +120,7 @@ style.textContent = `
         }
     }
 `;
-document.head.appendChild(style);
+document.head.appendChild(fallStyle);
 
 // Создаём украшения каждые 3 секунды
 setInterval(createOrnament, 3000);

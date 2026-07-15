@@ -1,193 +1,230 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Никита & Татьяна Балины | 16.08.2026</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-</head>
-<body>
+/* ===== УВЕДОМЛЕНИЕ О САЙТЕ ===== */
+.info-notification {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: var(--white);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(36, 70, 103, 0.2);
+    z-index: 999;
+    max-width: 250px;
+    border: 2px solid var(--blue-light);
+    animation: slideIn 0.5s ease-out;
+}
 
-    <!-- Аудио плеер -->
-    <audio id="bgMusic" loop>
-        <source src="media/music.mp3" type="audio/mpeg">
-    </audio>
-    <button id="musicToggle" class="music-btn" title="Включить/выключить музыку">
-        
-    </button>
+@keyframes slideIn {
+    from {
+        transform: translateX(-300px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
 
-    <!-- Главный экран -->
-    <header class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-content">
-            <div class="ornament-divider top">
-                <span class="ornament-symbol">✦</span>
-            </div>
-            
-            <p class="pre-title">Мы приглашаем вас на нашу свадьбу</p>
-            
-            <h1 class="main-title">Никита <span class="amp">&</span> Татьяна</h1>
-            <p class="surname">Балины</p>
-            
-            <div class="ornament-divider bottom">
-                <span class="ornament-symbol">✦</span>
-            </div>
-            
-            <p class="date-main">16 августа 2026</p>
-            <p class="location-main">Моты-Оозы (Усть-Мута)</p>
-        </div>
-    </header>
+.info-close {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--blue-steel);
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.3s ease;
+}
 
-    <!-- Приветственный текст -->
-    <section class="welcome-text">
-        <p class="welcome-intro">Дорогие друзья и близкие,</p>
-        <p class="welcome-text-main">С радостью приглашаем вас разделить с нами самый важный день в нашей жизни — день, когда мы станем одной семьёй</p>
-        <p class="welcome-date">16.08.2026</p>
-    </section>
+.info-close:hover {
+    color: var(--blue-dark);
+}
 
-    <!-- Календарь -->
-    <section class="calendar-section">
-        <div class="calendar-container">
-            <h3 class="calendar-month">август</h3>
-            <div class="calendar-weekdays">
-                <span>пн</span>
-                <span>вт</span>
-                <span>ср</span>
-                <span>чт</span>
-                <span>пт</span>
-                <span>сб</span>
-                <span>вс</span>
-            </div>
-            <div class="calendar-days">
-                <!-- Август 2026 начинается с субботы -->
-                <span class="day-empty"></span>
-                <span class="day-empty"></span>
-                <span class="day-empty"></span>
-                <span class="day-empty"></span>
-                <span class="day-empty"></span>
-                <span class="day-empty"></span>
-                <span class="day">1</span>
-                <span class="day">2</span>
-                <span class="day">3</span>
-                <span class="day">4</span>
-                <span class="day">5</span>
-                <span class="day">6</span>
-                <span class="day">7</span>
-                <span class="day">8</span>
-                <span class="day">9</span>
-                <span class="day">10</span>
-                <span class="day">11</span>
-                <span class="day">12</span>
-                <span class="day">13</span>
-                <span class="day">14</span>
-                <span class="day">15</span>
-                <span class="day special-day">16</span>
-                <span class="day">17</span>
-                <span class="day">18</span>
-                <span class="day">19</span>
-                <span class="day">20</span>
-                <span class="day">21</span>
-                <span class="day">22</span>
-                <span class="day">23</span>
-                <span class="day">24</span>
-                <span class="day">25</span>
-                <span class="day">26</span>
-                <span class="day">27</span>
-                <span class="day">28</span>
-                <span class="day">29</span>
-                <span class="day">30</span>
-                <span class="day">31</span>
-            </div>
-            <div class="calendar-heart">
-                <span>✦</span>
-            </div>
-        </div>
-    </section>
+.info-notification p {
+    margin: 0 0 10px 0;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
 
-    <!-- Таймер -->
-    <section class="timer-section">
-        <h2 class="section-title">До нашего дня осталось</h2>
-        <div class="countdown">
-            <div class="time-block">
-                <span id="days" class="time-number">00</span>
-                <span class="time-label">дней</span>
-            </div>
-            <div class="time-block">
-                <span id="hours" class="time-number">00</span>
-                <span class="time-label">часов</span>
-            </div>
-            <div class="time-block">
-                <span id="minutes" class="time-number">00</span>
-                <span class="time-label">минут</span>
-            </div>
-            <div class="time-block">
-                <span id="seconds" class="time-number">00</span>
-                <span class="time-label">секунд</span>
-            </div>
-        </div>
-    </section>
+.info-contact {
+    color: var(--blue-deep) !important;
+    font-weight: 600;
+    font-size: 0.9rem !important;
+}
 
-    <!-- Место проведения -->
-    <section class="venue-section">
-        <h2 class="section-title">Место проведения</h2>
-        <div class="venue-card">
-            <div class="venue-icon">🏔️</div>
-            <h3>Моты-Оозы</h3>
-            <p class="venue-subtitle">Усть-Мута</p>
-            <p class="venue-note">Точный адрес будет сообщён дополнительно</p>
-        </div>
-    </section>
+/* ===== ФОТОГАЛЕРЕЯ ===== */
+.photos-gallery {
+    padding: 80px 20px;
+    background: var(--white);
+    text-align: center;
+}
 
-    <!-- Дресс-код -->
-    <section class="dresscode-section">
-        <h2 class="section-title">Дресс-код</h2>
-        <p class="dresscode-subtitle">Мы будем рады, если ваш наряд будет в оттенках нашей свадебной палитры</p>
-        <div class="color-palette">
-            <div class="color-item">
-                <div class="color-circle" style="background-color: #D8E8F2;"></div>
-            </div>
-            <div class="color-item">
-                <div class="color-circle" style="background-color: #A1BFDD;"></div>
-            </div>
-            <div class="color-item">
-                <div class="color-circle" style="background-color: #B8CCDD;"></div>
-            </div>
-            <div class="color-item">
-                <div class="color-circle" style="background-color: #8698AA;"></div>
-            </div>
-            <div class="color-item">
-                <div class="color-circle" style="background-color: #64798C;"></div>
-            </div>
-            <div class="color-item">
-                <div class="color-circle" style="background-color: #42678B;"></div>
-            </div>
-            <div class="color-item">
-                <div class="color-circle" style="background-color: #244667;"></div>
-            </div>
-        </div>
-    </section>
+.photos-gallery .section-title {
+    color: var(--blue-dark);
+    margin-bottom: 50px;
+}
 
-    <!-- Пожелания -->
-    <section class="wishes-section">
-        <h2 class="section-title">Пожелания</h2>
-        <div class="wishes-card">
-            <p>Ваше присутствие — самый ценный подарок для нас! </p>
-            <p>Приходите с открытым сердцем и хорошим настроением</p>
-            <p>Ваши тёплые слова и благословения — лучшее, что вы можете нам подарить</p>
-        </div>
-    </section>
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    max-width: 800px;
+    margin: 0 auto;
+}
 
-    <!-- Футер -->
-    <footer class="footer">
-        <div class="ornament-divider">
-            <span class="ornament-symbol">✦</span>
-        </div>
-        <p class="footer-names">Никита & Татьяна</p>
-        <p class="footer-date">16.08.2026</p>
-        <p class="footer-love">С любовью и нетерпением ждём вас!</p>
-    </footer>
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(36, 70, 103, 0.15);
+    aspect-ratio: 3/4;
+    cursor: pointer;
+}
 
-    <script src="script.js"></script>
-</body>
-</html>
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.photo-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(36, 70, 103, 0.85), transparent);
+    color: white;
+    padding: 30px 15px 15px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .photo-overlay {
+    transform: translateY(0);
+}
+
+.photo-overlay p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+}
+
+/* ===== КОНТАКТЫ МОЛОДОЖЁНОВ ===== */
+.contacts-section {
+    padding: 80px 20px;
+    background: var(--blue-sky);
+    text-align: center;
+}
+
+.contacts-section .section-title {
+    color: var(--blue-dark);
+    margin-bottom: 40px;
+}
+
+.contacts-card {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--white);
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(36, 70, 103, 0.1);
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background: var(--cream);
+    transition: transform 0.3s ease;
+}
+
+.contact-item:last-child {
+    margin-bottom: 0;
+}
+
+.contact-item:hover {
+    transform: translateX(10px);
+}
+
+.contact-icon {
+    font-size: 2.5rem;
+    margin-right: 20px;
+}
+
+.contact-info {
+    text-align: left;
+    flex: 1;
+}
+
+.contact-info h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--blue-dark);
+    margin-bottom: 8px;
+}
+
+.contact-info p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+@media (max-width: 768px) {
+    .info-notification {
+        left: 10px;
+        bottom: 10px;
+        max-width: 200px;
+        padding: 15px;
+    }
+
+    .gallery-container {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+    }
+
+    .contact-item {
+        padding: 15px;
+    }
+
+    .contact-icon {
+        font-size: 2rem;
+    }
+
+    .contact-info h4 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .info-notification {
+        display: none;
+    }
+
+    .gallery-container {
+        gap: 10px;
+    }
+
+    .contact-item {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .contact-icon {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .contact-info {
+        text-align: center;
+    }
+}
