@@ -1,5 +1,5 @@
 // ===== ТАЙМЕР ОБРАТНОГО ОТСЧЁТА =====
-const weddingDate = new Date('2026-08-22T13:00:00').getTime();
+const weddingDate = new Date('2026-08-16T14:00:00').getTime();
 
 function updateCountdown() {
     const now = new Date().getTime();
@@ -7,7 +7,7 @@ function updateCountdown() {
 
     if (distance < 0) {
         document.querySelector('.countdown').innerHTML = 
-            '<p style="font-size: 1.5rem; color: var(--gold);">Мы уже поженились! 🎉</p>';
+            '<p style="font-size: 1.5rem; color: var(--blue-mist);">Мы уже поженились! 🎉</p>';
         return;
     }
 
@@ -57,27 +57,29 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-document.querySelectorAll('section, .venue-card, .wishes-card, .photo-frame').forEach(el => {
+document.querySelectorAll('section, .venue-card, .wishes-card').forEach(el => {
     el.classList.add('fade-in');
     observer.observe(el);
 });
 
-// ===== ПАДАЮЩИЕ СЕРДЕЧКИ (декор) =====
-function createHeart() {
-    const heart = document.createElement('div');
-    heart.innerHTML = '♥';
-    heart.style.position = 'fixed';
-    heart.style.top = '-20px';
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.color = 'var(--wine)';
-    heart.style.opacity = '0.3';
-    heart.style.fontSize = (Math.random() * 15 + 10) + 'px';
-    heart.style.pointerEvents = 'none';
-    heart.style.zIndex = '9999';
-    heart.style.animation = `fall ${Math.random() * 3 + 4}s linear forwards`;
-    document.body.appendChild(heart);
+// ===== ПАДАЮЩИЕ УКРАШЕНИЯ (декор) =====
+function createOrnament() {
+    const symbols = ['✦', '❋', '✧'];
+    const symbol = symbols[Math.floor(Math.random() * symbols.length)];
+    const ornament = document.createElement('div');
+    ornament.innerHTML = symbol;
+    ornament.style.position = 'fixed';
+    ornament.style.top = '-20px';
+    ornament.style.left = Math.random() * 100 + 'vw';
+    ornament.style.color = 'var(--blue-light)';
+    ornament.style.opacity = '0.4';
+    ornament.style.fontSize = (Math.random() * 15 + 10) + 'px';
+    ornament.style.pointerEvents = 'none';
+    ornament.style.zIndex = '9999';
+    ornament.style.animation = `fall ${Math.random() * 3 + 4}s linear forwards`;
+    document.body.appendChild(ornament);
 
-    setTimeout(() => heart.remove(), 7000);
+    setTimeout(() => ornament.remove(), 7000);
 }
 
 // Добавляем анимацию падения
@@ -92,5 +94,5 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Создаём сердечки каждые 3 секунды
-setInterval(createHeart, 3000);
+// Создаём украшения каждые 3 секунды
+setInterval(createOrnament, 3000);
