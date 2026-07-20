@@ -716,10 +716,6 @@ body {
         max-width: 220px;
         padding: 15px;
     }
-
-    .info-mini-btn {
-        display: flex; /* Показываем мини-кнопку */
-    }
 }
 
 @media (max-width: 480px) {
