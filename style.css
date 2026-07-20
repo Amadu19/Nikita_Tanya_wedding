@@ -885,10 +885,6 @@ body {
 }
 
 @media (max-width: 480px) {
-    .info-notification {
-        display: none;
-    }
-
     .gallery-container {
         gap: 10px;
     }

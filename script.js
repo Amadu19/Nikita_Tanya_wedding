@@ -70,13 +70,9 @@ function toggleInfo() {
     }
 }
 
-// Автоматически сворачиваем на мобильных при загрузке
-// (используем screen.width, а не window.innerWidth — оно не меняется
-// при изменении масштаба/зума страницы, в отличие от innerWidth)
-if (window.screen.width <= 768) {
-    document.getElementById('infoNotification').classList.add('collapsed');
-    document.getElementById('infoMiniBtn').classList.add('visible');
-}
+// Уведомление всегда показывается полностью при загрузке — и на мобильных,
+// и на десктопе. Свернуть его в круглую кнопку можно только вручную,
+// нажав на крестик (см. closeInfo() выше).
 
 // ===== АНИМАЦИИ ПОЯВЛЕНИЯ ПРИ СКРОЛЛЕ =====
 const observerOptions = {
