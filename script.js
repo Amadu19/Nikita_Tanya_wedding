@@ -70,9 +70,10 @@ function toggleInfo() {
     }
 }
 
-// Уведомление всегда показывается полностью при загрузке — и на мобильных,
-// и на десктопе. Свернуть его в круглую кнопку можно только вручную,
-// нажав на крестик (см. closeInfo() выше).
+// При загрузке страницы уведомление свёрнуто — видна только круглая кнопка.
+// Открыть его можно по клику на кнопку (см. toggleInfo() выше).
+document.getElementById('infoNotification').classList.add('collapsed');
+document.getElementById('infoMiniBtn').classList.add('visible');
 
 // ===== АНИМАЦИИ ПОЯВЛЕНИЯ ПРИ СКРОЛЛЕ =====
 const observerOptions = {
