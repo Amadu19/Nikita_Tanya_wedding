@@ -9,11 +9,14 @@
 </head>
 <body>
 
-    <!-- Кнопка информации о сайте -->
+    <!-- Мини-кнопка (видна на мобильных) -->
+    <button class="info-mini-btn pulse" id="infoMiniBtn" onclick="toggleInfo()">💬</button>
+    
+    <!-- Полное уведомление -->
     <div class="info-notification" id="infoNotification">
         <button class="info-close" onclick="closeInfo()">×</button>
         <p>Хотите такой же сайт?</p>
-        <a href="https://vk.ru/a.vanilopa">Пишите в вк Алине!;)</a>
+        <p class="info-contact">Telegram: @your_username</p>
     </div>
 
     <!-- Аудио плеер -->
