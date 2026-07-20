@@ -46,30 +46,41 @@ musicBtn.addEventListener('click', () => {
     isPlaying = !isPlaying;
 });
 
-// ===== ЗАКРЫТИЕ УВЕДОМЛЕНИЯ =====
+// ===== УВЕДОМЛЕНИЕ О САЙТЕ =====
 function closeInfo() {
     const notification = document.getElementById('infoNotification');
-    notification.style.animation = 'slideOut 0.3s ease-out forwards';
-    setTimeout(() => {
-        notification.style.display = 'none';
-    }, 300);
+    const miniBtn = document.getElementById('infoMiniBtn');
+    
+    // На мобильных — сворачиваем, показываем мини-кнопку
+    if (window.innerWidth <= 768) {
+        notification.classList.add('collapsed');
+        miniBtn.style.display = 'flex';
+    } else {
+        // На десктопе — скрываем полностью
+        notification.style.animation = 'slideOut 0.3s ease-out forwards';
+        setTimeout(() => {
+            notification.style.display = 'none';
+        }, 300);
+    }
 }
 
-// Добавляем анимацию закрытия
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideOut {
-        from {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        to {
-            transform: translateX(-300px);
-            opacity: 0;
-        }
+function toggleInfo() {
+    const notification = document.getElementById('infoNotification');
+    const miniBtn = document.getElementById('infoMiniBtn');
+    
+    if (notification.classList.contains('collapsed')) {
+        notification.classList.remove('collapsed');
+        miniBtn.style.display = 'none';
+    } else {
+        notification.classList.add('collapsed');
+        miniBtn.style.display = 'flex';
     }
-`;
-document.head.appendChild(style);
+}
+
+// Автоматически сворачиваем на мобильных при загрузке
+if (window.innerWidth <= 768) {
+    document.getElementById('infoNotification').classList.add('collapsed');
+}
 
 // ===== АНИМАЦИИ ПОЯВЛЕНИЯ ПРИ СКРОЛЛЕ =====
 const observerOptions = {
