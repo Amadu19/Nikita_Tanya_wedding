@@ -50,36 +50,30 @@ musicBtn.addEventListener('click', () => {
 function closeInfo() {
     const notification = document.getElementById('infoNotification');
     const miniBtn = document.getElementById('infoMiniBtn');
-    
-    // На мобильных — сворачиваем, показываем мини-кнопку
-    if (window.innerWidth <= 768) {
-        notification.classList.add('collapsed');
-        miniBtn.style.display = 'flex';
-    } else {
-        // На десктопе — скрываем полностью
-        notification.style.animation = 'slideOut 0.3s ease-out forwards';
-        setTimeout(() => {
-            notification.style.display = 'none';
-        }, 300);
-    }
+
+    // И на мобильных, и на десктопе — сворачиваем уведомление
+    // и показываем круглую мини-кнопку, чтобы его можно было вернуть
+    notification.classList.add('collapsed');
+    miniBtn.classList.add('visible');
 }
 
 function toggleInfo() {
     const notification = document.getElementById('infoNotification');
     const miniBtn = document.getElementById('infoMiniBtn');
-    
+
     if (notification.classList.contains('collapsed')) {
         notification.classList.remove('collapsed');
-        miniBtn.style.display = 'none';
+        miniBtn.classList.remove('visible');
     } else {
         notification.classList.add('collapsed');
-        miniBtn.style.display = 'flex';
+        miniBtn.classList.add('visible');
     }
 }
 
 // Автоматически сворачиваем на мобильных при загрузке
 if (window.innerWidth <= 768) {
     document.getElementById('infoNotification').classList.add('collapsed');
+    document.getElementById('infoMiniBtn').classList.add('visible');
 }
 
 // ===== АНИМАЦИИ ПОЯВЛЕНИЯ ПРИ СКРОЛЛЕ =====
@@ -135,33 +129,3 @@ document.head.appendChild(fallStyle);
 
 // Создаём украшения каждые 3 секунды
 setInterval(createOrnament, 3000);
-// ===== УВЕДОМЛЕНИЕ О САЙТЕ =====
-function closeInfo() {
-    const notification = document.getElementById('infoNotification');
-    const miniBtn = document.getElementById('infoMiniBtn');
-    
-    if (window.innerWidth <= 768) {
-        notification.classList.add('collapsed');
-        miniBtn.style.display = 'flex';
-    } else {
-        notification.style.display = 'none';
-    }
-}
-
-function toggleInfo() {
-    const notification = document.getElementById('infoNotification');
-    const miniBtn = document.getElementById('infoMiniBtn');
-    
-    if (notification.classList.contains('collapsed')) {
-        notification.classList.remove('collapsed');
-        miniBtn.style.display = 'none';
-    } else {
-        notification.classList.add('collapsed');
-        miniBtn.style.display = 'flex';
-    }
-}
-
-// Сворачиваем на мобильных при загрузке
-if (window.innerWidth <= 768) {
-    document.getElementById('infoNotification').classList.add('collapsed');
-}

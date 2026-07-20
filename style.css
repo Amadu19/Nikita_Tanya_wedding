@@ -679,10 +679,14 @@ body {
     cursor: pointer;
     z-index: 1000;
     box-shadow: 0 4px 15px rgba(36, 70, 103, 0.3);
-    display: none; /* Скрыта по умолчанию, показывается на мобильных */
+    display: none; /* Скрыта по умолчанию */
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
+}
+
+.info-mini-btn.visible {
+    display: flex; /* Показываем на любом экране, когда JS добавит этот класс */
 }
 
 .info-mini-btn:hover {
@@ -907,103 +911,5 @@ body {
         text-align: center;
     }
 }
-/* ===== УВЕДОМЛЕНИЕ О САЙТЕ ===== */
-.info-notification {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background: var(--white);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(114, 47, 55, 0.2);
-    z-index: 999;
-    max-width: 250px;
-    border: 2px solid var(--gold);
-    animation: slideIn 0.5s ease-out;
-}
-
-@keyframes slideIn {
-    from {
-        transform: translateX(-300px);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-.info-close {
-    position: absolute;
-    top: 8px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: var(--wine);
-    cursor: pointer;
-}
-
-.info-notification p {
-    margin: 0 0 10px 0;
-    color: var(--text-dark);
-    font-size: 0.95rem;
-}
-
-.info-contact {
-    color: var(--wine) !important;
-    font-weight: 600;
-}
-
-.info-mini-btn {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: var(--wine);
-    color: white;
-    border: 2px solid var(--gold);
-    font-size: 1.3rem;
-    cursor: pointer;
-    z-index: 1000;
-    box-shadow: 0 4px 15px rgba(114, 47, 55, 0.3);
-    display: none;
-    align-items: center;
-    justify-content: center;
-}
-
-.info-mini-btn.pulse {
-    animation: pulseInfo 2s infinite;
-}
-
-@keyframes pulseInfo {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
-    50% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
-}
-
-@media (max-width: 768px) {
-    .info-notification {
-        left: 10px;
-        bottom: 80px;
-        max-width: 220px;
-    }
-    
-    .info-mini-btn {
-        display: flex;
-    }
-    
-    .info-notification.collapsed {
-        display: none;
-    }
-}
-
-@media (max-width: 480px) {
-    .info-notification {
-        left: 10px;
-        right: 10px;
-        bottom: 80px;
-        max-width: none;
-    }
-}
+/* (дублирующийся устаревший блок стилей уведомления удалён — он ссылался на
+   несуществующие переменные --wine/--gold и перекрывал актуальный .info-mini-btn) */
