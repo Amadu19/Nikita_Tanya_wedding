@@ -135,3 +135,33 @@ document.head.appendChild(fallStyle);
 
 // Создаём украшения каждые 3 секунды
 setInterval(createOrnament, 3000);
+// ===== УВЕДОМЛЕНИЕ О САЙТЕ =====
+function closeInfo() {
+    const notification = document.getElementById('infoNotification');
+    const miniBtn = document.getElementById('infoMiniBtn');
+    
+    if (window.innerWidth <= 768) {
+        notification.classList.add('collapsed');
+        miniBtn.style.display = 'flex';
+    } else {
+        notification.style.display = 'none';
+    }
+}
+
+function toggleInfo() {
+    const notification = document.getElementById('infoNotification');
+    const miniBtn = document.getElementById('infoMiniBtn');
+    
+    if (notification.classList.contains('collapsed')) {
+        notification.classList.remove('collapsed');
+        miniBtn.style.display = 'none';
+    } else {
+        notification.classList.add('collapsed');
+        miniBtn.style.display = 'flex';
+    }
+}
+
+// Автоматически сворачиваем на мобильных при загрузке
+if (window.innerWidth <= 768) {
+    document.getElementById('infoNotification').classList.add('collapsed');
+}
