@@ -689,6 +689,11 @@ body {
     display: flex; /* Показываем на любом экране, когда JS добавит этот класс */
 }
 
+/* Скрываем полное уведомление, когда оно свёрнуто — на любом экране */
+.info-notification.collapsed {
+    display: none;
+}
+
 .info-mini-btn:hover {
     background: var(--blue-dark);
     transform: scale(1.1);
@@ -714,11 +719,6 @@ body {
 
     .info-mini-btn {
         display: flex; /* Показываем мини-кнопку */
-    }
-
-    /* Скрываем полное уведомление на мобильных, показываем только по клику */
-    .info-notification.collapsed {
-        display: none;
     }
 }
 
