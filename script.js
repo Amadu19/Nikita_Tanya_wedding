@@ -161,7 +161,7 @@ function toggleInfo() {
     }
 }
 
-// Автоматически сворачиваем на мобильных при загрузке
+// Сворачиваем на мобильных при загрузке
 if (window.innerWidth <= 768) {
     document.getElementById('infoNotification').classList.add('collapsed');
 }
