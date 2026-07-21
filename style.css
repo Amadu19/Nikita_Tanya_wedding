@@ -903,5 +903,128 @@ body {
         text-align: center;
     }
 }
-/* (дублирующийся устаревший блок стилей уведомления удалён — он ссылался на
-   несуществующие переменные --wine/--gold и перекрывал актуальный .info-mini-btn) */
+/* ===== РАСПИСАНИЕ ДНЯ ===== */
+.schedule-section {
+    padding: 80px 20px;
+    background: var(--white);
+    text-align: center;
+}
+
+.schedule-section .section-title {
+    color: var(--blue-dark);
+    margin-bottom: 50px;
+}
+
+.schedule-container {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.schedule-item {
+    display: flex;
+    align-items: center;
+    background: var(--blue-sky);
+    border-radius: 15px;
+    padding: 25px 30px;
+    box-shadow: 0 5px 20px rgba(36, 70, 103, 0.08);
+    border-left: 4px solid var(--accent-gold);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.schedule-item:hover {
+    transform: translateX(10px);
+    box-shadow: 0 8px 30px rgba(36, 70, 103, 0.15);
+}
+
+.schedule-time {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue-deep), var(--blue-dark));
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    border: 3px solid var(--accent-gold);
+    box-shadow: 0 5px 15px rgba(36, 70, 103, 0.2);
+}
+
+.schedule-info {
+    padding-left: 25px;
+    text-align: left;
+    flex: 1;
+}
+
+.schedule-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--blue-dark);
+    margin-bottom: 5px;
+    line-height: 1.2;
+}
+
+.schedule-info p {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    line-height: 1.4;
+}
+
+.schedule-divider {
+    width: 2px;
+    height: 20px;
+    background: linear-gradient(to bottom, transparent, var(--blue-light), transparent);
+    margin: 0 auto;
+    opacity: 0.5;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .schedule-item {
+        padding: 20px;
+    }
+
+    .schedule-time {
+        width: 75px;
+        height: 75px;
+        font-size: 1rem;
+    }
+
+    .schedule-info h3 {
+        font-size: 1.2rem;
+    }
+
+    .schedule-info p {
+        font-size: 0.85rem;
+    }
+
+    .schedule-info {
+        padding-left: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .schedule-section {
+        padding: 60px 15px;
+    }
+
+    .schedule-time {
+        width: 65px;
+        height: 65px;
+        font-size: 0.9rem;
+    }
+
+    .schedule-info h3 {
+        font-size: 1.1rem;
+    }
+
+    .schedule-item {
+        padding: 15px;
+    }
+}
